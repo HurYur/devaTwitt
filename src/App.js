@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 import UserList from './components/users/UsersList'
 import NewUser from './components/users/NewUser'
-import PostList from "./components/PostsList";
+import PostList from "./components/posts/PostsList";
 
 class App extends Component {
   render() {
@@ -38,10 +38,12 @@ class App extends Component {
           </nav>
         </header>
         <main>
-            <Route exact path="/" component={Home} />
-            <Route path="/users" component={UserList} />
-            <Route path="/new-user" component={NewUser} />
-            <Route path="/posts" component={PostList} />
+            <div className="container">
+                <Route exact path="/" component={Home} />
+                <Route path="/users" component={UserList} />
+                <Route path="/new-user" component={NewUser} />
+                <Route path="/posts" component={PostList} />
+            </div>
         </main>
       </div>
     );
