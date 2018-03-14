@@ -1,23 +1,20 @@
 import React from 'react';
 
+import loadData from '../api/fetchData';
+
 class UsersList extends React.Component {
     constructor(props){
         super(props);
         this.state = {users: []};
     }
-    loadUsers(){
-        fetch("../api/users.json", {'method': 'get'})
-            .then((response) => {
-                return response.json();
-            })
-            .then((result) =>{
-                this.setState({users: result});
-            })
-    }
     componentDidMount() {
-        this.loadUsers();
+        loadData("../api/users.json", {'method': 'get'})
+            .then((users)=>{
+                this.setState({users: users})
+            });
     }
     render(){
+
         return (
             <ul>
                 {

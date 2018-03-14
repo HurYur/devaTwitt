@@ -1,21 +1,17 @@
 import React from 'react';
 
+import loadData from "../api/fetchData";
+
 class PostList extends React.Component{
     constructor(props){
         super(props);
         this.state = {posts: []};
     }
-    loadPosts(){
-        fetch("../api/posts.json", {'method': 'get'})
-            .then((response) => {
-                return response.json();
-            })
-            .then((result) =>{
-                this.setState({posts: result});
-            })
-    }
     componentDidMount() {
-        this.loadPosts();
+        loadData("../api/posts.json", {'method': 'get'})
+            .then((posts)=>{
+                this.setState({posts: posts})
+            });
     }
     render(){
         return (
