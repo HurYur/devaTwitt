@@ -1,6 +1,6 @@
 import React from 'react';
 
-import loadData from '../api/fetchData';
+import loadData from '../../api/fetchData';
 
 class UsersList extends React.Component {
     constructor(props){

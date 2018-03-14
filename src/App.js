@@ -3,7 +3,8 @@ import { Route, Link } from "react-router-dom";
 
 import logo from './logo.svg';
 import './App.css';
-import UserList from './components/UsersList'
+import UserList from './components/users/UsersList'
+import NewUser from './components/users/NewUser'
 import PostList from "./components/PostsList";
 
 class App extends Component {
@@ -25,10 +26,13 @@ class App extends Component {
                       <Link to="/">Home</Link>
                   </li>
                   <li>
-                      <Link to="/users">UserList</Link>
+                      <Link to="/users">User List</Link>
                   </li>
                   <li>
-                      <Link to="/posts">PostList</Link>
+                      <Link to="/posts">Post List</Link>
+                  </li>
+                  <li>
+                      <Link to="/new-user">Add user</Link>
                   </li>
               </ul>
           </nav>
@@ -36,6 +40,7 @@ class App extends Component {
         <main>
             <Route exact path="/" component={Home} />
             <Route path="/users" component={UserList} />
+            <Route path="/new-user" component={NewUser} />
             <Route path="/posts" component={PostList} />
         </main>
       </div>
