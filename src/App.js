@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import UserList from './components/UsersList'
+import PostList from "./components/PostsList";
 
 class App extends Component {
   render() {
@@ -15,7 +16,8 @@ class App extends Component {
         <p className="App-intro">
           Let's build small Twitter
         </p>
-        <UserList></UserList>
+        <UserList/>
+        <PostList/>
       </div>
     );
   }
