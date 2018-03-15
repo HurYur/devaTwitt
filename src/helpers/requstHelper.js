@@ -1,5 +1,5 @@
-export function get(url, handleErrors = true) {
-    return JSON.parse(localStorage.getItem('favoritedCoins'));
+export function requestGet(url, handleErrors = true) {
+    return JSON.parse(localStorage.getItem(url));
 }
 
 export function requestPost(url, data, handleErrors = true) {

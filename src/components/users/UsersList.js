@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Button } from 'react-bootstrap';
 
-import loadData from '../../api/fetchData';
+import {requestGet} from '../../helpers/requstHelper';
 import User from './User';
 
 class UsersList extends React.Component {
@@ -10,10 +10,8 @@ class UsersList extends React.Component {
         this.state = {users: [], showActive: false};
     }
     componentDidMount() {
-        loadData("../api/users.json", {'method': 'get'})
-            .then((users)=>{
-                this.setState({users: users})
-            });
+        console.log(requestGet('devaTwitt.users'));
+        this.setState({users: requestGet('devaTwitt.users')});
     }
     render(){
         let {users, showActive} = this.state;
