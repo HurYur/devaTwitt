@@ -33,6 +33,17 @@ header .menu ul li{
   list-style: none;
 }
 
+.user .panel-footer{
+  display: flex;
+  justify-content: space-between;
+}
+.user .panel-heading{
+  text-align: left;
+}
+.user .panel-heading .user-img{
+  margin-right: 15px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

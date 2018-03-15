@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Row, Button } from 'react-bootstrap';
 
 import loadData from '../../api/fetchData';
+import User from './User';
 
 class UsersList extends React.Component {
     constructor(props){
@@ -18,21 +19,23 @@ class UsersList extends React.Component {
         let {users, showActive} = this.state;
 
         return (
-            <ul>
+            <div>
                 <Button bsStyle="info" onClick={()=> this.setState({showActive: !showActive})}>
                     {showActive ? "Show all users" : "Show active users"}
                 </Button>
-                {
-                    //@todo make refactoring
-                    showActive
-                        ? users.filter((user)=> user.isActive).map((user, i) =>{
-                            return <li key={i}>{user.email}</li>
-                        })
-                        : users.map((user, i)=>{
-                            return <li key={i}>{user.email}</li>
-                        })
-                }
-            </ul>
+                <Row>
+                    {
+                        //@todo make refactoring
+                        showActive
+                            ? users.filter((user)=> user.isActive).map((user, i) =>{
+                                return <User key={i} user={user} />
+                            })
+                            : users.map((user, i)=>{
+                                return <User key={i} user={user} />
+                            })
+                    }
+                </Row>
+            </div>
         )
     }
 }
