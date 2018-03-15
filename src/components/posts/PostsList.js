@@ -1,21 +1,17 @@
 import React from 'react';
-import {Row, Col, Panel, Button, Image} from 'react-bootstrap'
+import {Row, Col, Panel, Image} from 'react-bootstrap'
 
 import Post from './Post';
+import TextInput from '../shared/TextInput'
 import loadData from "../../api/fetchData";
 
 class PostList extends React.Component{
     constructor(props){
         super(props);
-        this.state = {posts: [], newPostText: '', postCharactersLimit: 200};
+        this.state = {posts: []};
     }
-    newPostType = (postText) => {
-        if(postText.length <= this.state.postCharactersLimit){
-            this.setState({newPostText: postText});
-        }
-    };
-    sendPost = () => {
-        console.log(this.state.newPostText);
+    sendPost = (newPostText) => {
+        console.log(newPostText);
     };
     componentDidMount() {
         loadData("../api/posts.json", {'method': 'get'})
@@ -24,7 +20,6 @@ class PostList extends React.Component{
             });
     }
     render(){
-        const {newPostText, postCharactersLimit} = this.state;
         return (
             <Row>
                 <Col sm={8} smOffset={2}>
@@ -33,13 +28,9 @@ class PostList extends React.Component{
                             <Image src="https://robohash.org/CSS.png?set=set1&size=50x50" circle />
                         </Panel.Heading>
                         <Panel.Body>
-                            <textarea value={newPostText}
-                                      onChange={(e) => this.newPostType(e.target.value)} />
-                            <div className="symbol-count">{postCharactersLimit - newPostText.length} symbols left</div>
+                            <TextInput messageCharactersLimit={200}
+                                       onSend={(newPostText)=> this.sendPost(newPostText)}/>
                         </Panel.Body>
-                        <Panel.Footer>
-                            <Button bsStyle="info" onClick={this.sendPost}>Send</Button>
-                        </Panel.Footer>
                     </Panel>
                     {
                         this.state.posts.map((post, i)=>{

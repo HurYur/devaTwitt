@@ -44,6 +44,11 @@ header .menu ul li{
   margin-right: 15px;
 }
 
+.post .panel-heading,
+.post .panel-footer{
+  display: flex;
+  justify-content: space-between;
+}
 .post .panel-body textarea{
   display: block;
   width: 100%;
