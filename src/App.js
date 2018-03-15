@@ -4,11 +4,20 @@ import { Navbar, Nav } from 'react-bootstrap'
 
 import logo from './logo.svg';
 import './App.css';
+import users from './api/users.json';
+
 import UserList from './components/users/UsersList'
 import NewUser from './components/users/NewUser'
 import PostList from "./components/posts/PostsList";
 
 class App extends Component {
+  constructor(props){
+      super(props);
+      this.loadDataToLocalStorage();
+  }
+  loadDataToLocalStorage(){
+      localStorage.setItem('devaTwitt.users', JSON.stringify(users));
+  }
   render() {
       const Home = () => (
           <div>

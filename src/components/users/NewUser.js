@@ -1,61 +1,59 @@
 import React from 'react';
+import {Button, Form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
+
+import {requestPut} from '../../helpers/requstHelper';
+import {validateName, validateEmail, validatePassword} from '../../helpers/validationHelper';
 
 class NewUser extends React.Component{
     constructor(props){
         super(props);
-        this.state = { name: '', email: '', password: ''}
+        this.state = { name: '', email: '', password: '', isValid: false}
     }
+    renderFieldGroup = (fieldName, type, label, validation) =>{
+        return (
+            <FormGroup controlId={fieldName}
+                       validationState={validation ? 'success' : 'error'}
+        >
+            <ControlLabel>{label}</ControlLabel>
+            <FormControl type={type}
+                         placeholder={label}
+                         value={this.state[fieldName]}
+                         onChange={(e) => this.onInputChange(e.target.value, fieldName)} />
+        </FormGroup>
+        )
+    };
     signup = (e) => {
         e.preventDefault();
-        let isValid = true;
-        if(isValid){
-            this.sendToServer();
-        }
-    };
-    sendToServer(){
-        let {name, email, password } = this.state;
+        let {name, email, password, isValid } = this.state;
+        //@remove setState
+        this.setState({ isValid: validateName(name) && validateEmail(email) && validatePassword(password) });
         let data ={
             name: name,
             email: email,
-            password: password
+            password: password,
+            regisredDate: new Date()
         };
-        fetch("../api/users.json", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            cache: 'default',
-            body: JSON.stringify(data)
-        }).then(() => {
-           console.log("success");
-        }).catch((err)=>{
-            console.log(err);
-        });
+        if (isValid){
+            requestPut('devaTwitt.users', data);
+        }
     };
+
     onInputChange(value, field){
         this.setState({[field]: value});
     }
     render(){
-        return <form>
-            <input type="text"
-                   value={this.state.name}
-                   placeholder="name"
-                   onChange={(e) => this.onInputChange(e.target.value, "name")} />
-            <input type="email"
-                   value={this.state.email}
-                   placeholder="email"
-                   onChange={(e) => this.onInputChange(e.target.value, "email")} />
-            <input type="password"
-                   value={this.state.password}
-                   placeholder="password"
-                   onChange={(e) => this.onInputChange(e.target.value, "password")} />
+        const {name, email, password} = this.state;
+        return  (<Form horizontal>
 
-            <input type="submit"
-                   onClick={this.signup}/>
-        </form>
-    }
+            {this.renderFieldGroup("name","text","Name",validateName(name))}
+            {this.renderFieldGroup("email","email","Email",validateEmail(email))}
+            {this.renderFieldGroup("password","password","Password",validatePassword(password))}
+
+            <FormGroup>
+                <Button type="submit"  bsStyle="info" onClick={this.signup}>Sign up</Button>
+            </FormGroup>
+        </Form>
+    )}
 }
 
 export default NewUser;

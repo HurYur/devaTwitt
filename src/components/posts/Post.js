@@ -5,7 +5,6 @@ import PostActions from './PostActions';
 import parseDate from '../../helpers/date';
 
 class Post extends React.Component{
-
     render(){
         let {post} = this.props;
 
