@@ -16,24 +16,24 @@ class PostActions extends React.Component{
     };
     render(){
         let {showComments} = this.state;
-        let {post} = this.props;
+        let {post: {likes = "", comments = ""}} = this.props;
 
         return (
              <Panel.Footer>
-                 <div className="likes pointer" onClick={() => this.likePost(post.likes)}>
+                 <div className="likes pointer" onClick={() => this.likePost(likes)}>
                      <Glyphicon glyph="heart" />
-                     <span className="quantity">{post.likes.length}</span>
+                     <span className="quantity">{likes.length}</span>
                  </div>
                  <div className="comments pointer" onClick={()=> this.setState({showComments: !showComments})}>
                      <Glyphicon glyph="comment" />
-                     <span className="quantity">{post.comments.length}</span>
+                     <span className="quantity">{comments.length}</span>
                  </div>
                  {
                      showComments && <div className="comments-section">
                          <TextInput messageCharactersLimit={200}
                                     onSend={(newComment)=> this.sendComment(newComment)}/>
                          <div className="comments-container">
-                             {post.comments.map((comment, i)=>{
+                             {comments.map((comment, i)=>{
                                  return <div className="comment" key={i}>{comment.author}{comment.text}</div>
                              })}
                          </div>

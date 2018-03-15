@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
 
 import logo from './logo.svg';
 import './App.css';
 import users from './api/users.json';
+import posts from './api/posts.json';
 
 import UserList from './components/users/UsersList'
 import NewUser from './components/users/NewUser'
@@ -17,6 +18,7 @@ class App extends Component {
   }
   loadDataToLocalStorage(){
       localStorage.setItem('devaTwitt.users', JSON.stringify(users));
+      localStorage.setItem('devaTwitt.posts', JSON.stringify(posts));
   }
   render() {
       const Home = () => (

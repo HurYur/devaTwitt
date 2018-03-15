@@ -3,7 +3,7 @@ import {Row, Col, Panel, Image} from 'react-bootstrap'
 
 import Post from './Post';
 import TextInput from '../shared/TextInput'
-import loadData from "../../api/fetchData";
+import {requestGet, requestPost} from "../../helpers/requstHelper";
 
 class PostList extends React.Component{
     constructor(props){
@@ -11,13 +11,15 @@ class PostList extends React.Component{
         this.state = {posts: []};
     }
     sendPost = (newPostText) => {
-        console.log(newPostText);
+        //@todo add Author
+        let publication = {
+            publication: newPostText,
+            date: new Date()
+        };
+        requestPost('devaTwitt.posts', publication)
     };
     componentDidMount() {
-        loadData("../api/posts.json", {'method': 'get'})
-            .then((posts)=>{
-                this.setState({posts: posts})
-            });
+        this.setState({posts: requestGet('devaTwitt.posts')});
     }
     render(){
         return (
