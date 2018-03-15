@@ -11,7 +11,7 @@ class Post extends React.Component{
         let {post} = this.props;
 
         return (
-              <Panel>
+              <Panel className="post">
                   <Panel.Heading>{post.author} {post.date}</Panel.Heading>
                   <Panel.Body>{post.publication}</Panel.Body>
                   <Panel.Footer>
