@@ -49,9 +49,14 @@ header .menu ul li{
   display: flex;
   justify-content: space-between;
 }
-.post .panel-body textarea{
-  display: block;
-  width: 100%;
+.post .panel-footer{
+  flex-wrap: wrap;
+}
+.post .panel-footer .new-message-container{
+  text-align: center;
+}
+.post .comments-container{
+  text-align: left;
 }
 
 @keyframes App-logo-spin {
