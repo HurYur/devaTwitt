@@ -20,6 +20,7 @@ class UsersList extends React.Component {
 
         return (
             <div>
+                <h2>Users</h2>
                 <Button bsStyle="info" onClick={()=> this.setState({showActive: !showActive})}>
                     {showActive ? "Show all users" : "Show active users"}
                 </Button>

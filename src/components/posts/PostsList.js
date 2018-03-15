@@ -23,6 +23,7 @@ class PostList extends React.Component{
         return (
             <Row>
                 <Col sm={8} smOffset={2}>
+                    <h2>Posts</h2>
                     <Panel className="post">
                         <Panel.Heading>
                             <Image src="https://robohash.org/CSS.png?set=set1&size=50x50" circle />

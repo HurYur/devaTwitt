@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  padding: 20px;
-  color: white;
-}
-
 .App-title {
   font-size: 1.5em;
 }
@@ -20,17 +9,34 @@
 .App-intro {
   font-size: large;
 }
-
-header .menu ul{
-  display: flex;
-  justify-content: center;
-  padding: 0;
+header .navbar{
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
 }
-header .menu ul li{
-  background: #fafafa;
-  padding: 20px;
-  margin: 0 10px;
-  list-style: none;
+header .navbar-brand{
+  padding-left: 70px;
+}
+header .navbar-brand .App-logo{
+  animation: App-logo-spin infinite 20s linear;
+  height: 40px;
+  position: absolute;
+  top: 5px;
+  left: 15px;
+}
+header .navbar-nav a{
+  color: #fafafa;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bold;
+}
+header .navbar-nav a:hover,
+header .navbar-nav a:focus{
+  text-decoration: none;
+  outline: none;
+}
+header .navbar-nav>li>a:hover{
+  background-color: #333333 !important;
 }
 
 .user .panel-footer{
