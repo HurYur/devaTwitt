@@ -49,6 +49,7 @@ class PostActions extends React.Component{
                  {
                      showComments && <div className="comments-section">
                          <TextInput messageCharactersLimit={200}
+                                    btnText="Send Comment"
                                     onSend={(newComment)=> this.sendComment(newComment)}/>
                          <div className="comments-container">
                              {comments.map((comment, i)=>{

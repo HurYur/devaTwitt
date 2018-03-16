@@ -24,7 +24,7 @@ class TextInput extends React.Component{
                     {messageCharactersLimit - newMessageText.length} symbols left
                 </div>
                 <Button bsStyle="info" onClick={() => this.sendPost(newMessageText)}>
-                    Send
+                    { this.props.btnText ?  this.props.btnText : "Send"}
                 </Button>
             </div>
         )}

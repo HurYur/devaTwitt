@@ -55,8 +55,28 @@ header .navbar-nav>li>a:hover{
   display: flex;
   justify-content: space-between;
 }
+.post .panel-heading{
+  align-items: center;
+}
+.post .panel-heading .author{
+  display: flex;
+  align-items: center;
+}
+.post .panel-heading .author img{
+  width: 40px;
+  height: 40px;
+}
+.post .panel-heading .author .name{
+  font-size: 18px;
+}
+.post .panel-heading .post-date{
+  font-size: 12px;
+}
 .post .panel-footer{
   flex-wrap: wrap;
+}
+.post .panel-footer .glyphicon{
+  margin-right: 7px;
 }
 .post .panel-footer .new-message-container{
   text-align: center;
@@ -67,7 +87,17 @@ header .navbar-nav>li>a:hover{
 .post .comments-container{
   text-align: left;
 }
-
+.post .comment{
+  margin-bottom: 10px;
+}
+.post .comment .author{
+  display: flex;
+  align-items: center;
+}
+.post .comment .author img{
+  width: 30px;
+  height: 30px;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

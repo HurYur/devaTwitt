@@ -40,6 +40,7 @@ class PostList extends React.Component{
                         </Panel.Heading>
                         <Panel.Body>
                             <TextInput messageCharactersLimit={200}
+                                       btnText="Send Post"
                                        onSend={(newPostText)=> this.sendPost(newPostText)}/>
                         </Panel.Body>
                     </Panel>
