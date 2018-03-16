@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
+import {Row, Col, Button, Form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
 
 import {postUser} from '../../helpers/requstHelper';
 import {validateName, validateEmail, validatePassword} from '../../helpers/validationHelper';
@@ -42,7 +42,7 @@ class NewUser extends React.Component{
     }
     render(){
         const {name, email, password} = this.state;
-        return  (<Form horizontal>
+        return  (<Row><Col className="user-register-container" sm="6" smOffset={3}><Form horizontal>
 
             {this.renderFieldGroup("name","text","Name",validateName(name))}
             {this.renderFieldGroup("email","email","Email",validateEmail(email))}
@@ -51,7 +51,7 @@ class NewUser extends React.Component{
             <FormGroup>
                 <Button type="submit"  bsStyle="info" onClick={this.signup}>Sign up</Button>
             </FormGroup>
-        </Form>
+            </Form></Col></Row>
     )}
 }
 

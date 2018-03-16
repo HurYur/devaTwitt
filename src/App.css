@@ -102,6 +102,13 @@ header .navbar-nav>li>a:hover{
   height: 30px;
 }
 
+@media screen and (max-width: 767px) {
+  .user-register-container .form-group{
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .users h2 + .btn {
   margin-top: 20px;
   margin-bottom: 30px;
