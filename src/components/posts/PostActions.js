@@ -3,6 +3,7 @@ import {Panel, Glyphicon} from 'react-bootstrap';
 
 import TextInput from '../shared/TextInput';
 import {requestPost} from "../../helpers/requstHelper";
+import {getCurrentUser} from "../../helpers/storageHelper";
 
 class PostActions extends React.Component{
     constructor(props){
@@ -10,27 +11,26 @@ class PostActions extends React.Component{
         this.state = {showComments: false}
     }
     likePost(){
-        //@todo change ID to logged user
-        let userId = 5;
-        let id = this.props.post.id;
+        const {post} = this.props;
+        let user = getCurrentUser();
+
         //ignore request if user liked post already
-        if(this.props.post.likes.indexOf(userId) < 0){
-            let updatedPost = this.props.post.likes.push(userId);
-            requestPost('devaTwitt.posts.' + id, updatedPost);
+        if(post.likes.indexOf(user.id) < 0){
+            let updatedPost = post.likes.push(user.id);
+            requestPost('devaTwitt.posts.' + post.id, updatedPost);
         }
     }
     sendComment = (newCommentText) => {
-        //@todo change ID to logged user
-        let userId = 5;
-        let id = this.props.post.id;
+        const {post} = this.props;
+        let user = getCurrentUser();
 
         let newComment = {
             text: newCommentText,
-            author: userId,
+            author: user.id,
             date: new Date()
         };
-        let updatedPost = this.props.post.comments.push(newComment);
-        requestPost('devaTwitt.posts.' + id, updatedPost);
+        let updatedPost = post.comments.push(newComment);
+        requestPost('devaTwitt.posts.' + post.id, updatedPost);
     };
     render(){
         let {showComments} = this.state;

@@ -10,6 +10,7 @@ import posts from './api/posts.json';
 import UserList from './components/users/UsersList'
 import NewUser from './components/users/NewUser'
 import PostList from "./components/posts/PostsList";
+import {setCurrentUser} from "./helpers/storageHelper";
 
 class App extends Component {
   constructor(props){
@@ -17,6 +18,16 @@ class App extends Component {
       this.loadDataToLocalStorage();
   }
   loadDataToLocalStorage(){
+      let user = {
+          id: 1,
+          name: 'test',
+          email: 'test@gmail.com',
+          isActive: true,
+          photo: "http://placehold.it/32x32",
+          about: 'Tell few words about your self',
+          registeredDate: new Date(),
+      };
+      setCurrentUser(user);
       localStorage.setItem('devaTwitt.users', JSON.stringify(users));
       localStorage.setItem('devaTwitt.posts', JSON.stringify(posts));
   }
