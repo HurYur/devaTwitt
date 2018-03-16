@@ -1,6 +1,9 @@
 import React from 'react';
 import { Col, Panel, Image, Glyphicon } from 'react-bootstrap';
+
+
 import {getCurrentUser} from "../../helpers/storageHelper";
+import {followUser} from "../../helpers/requstHelper";
 
 
 let loggedUser = getCurrentUser();
@@ -10,16 +13,7 @@ class User extends React.Component {
         this.state = {users: [], showActive: false};
     }
     follow(){
-        const {user} = this.props;
-        // unfollow
-        if (user.followers.indexOf(loggedUser.id) >= 0){
-            user.followers.splice(user.followers.indexOf(loggedUser.id), 1);
-        }
-        //follow
-        else {
-            user.followers.push(loggedUser.id);
-        }
-
+        followUser(this.props.user.id);
     }
     render(){
         let {user} = this.props;

@@ -45,3 +45,6 @@ export function postUser(user) {
     console.log('hello');
     requestPost('devaTwitt/users', newUser);
 }
+export function followUser(followUserId) {
+    requestPost(`devaTwitt/users/${followUserId}/follow`, user.id);
+}
