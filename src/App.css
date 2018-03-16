@@ -58,6 +58,9 @@ header .navbar-nav>li>a:hover{
 .post .panel-heading{
   align-items: center;
 }
+.post .new-post .btn{
+  margin-top: 20px;
+}
 .post .panel-heading .author{
   display: flex;
   align-items: center;

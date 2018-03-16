@@ -7,6 +7,7 @@ import './App.css';
 import users from './api/users.json';
 import posts from './api/posts.json';
 
+import Home from './components/Home'
 import UserList from './components/users/UsersList'
 import NewUser from './components/users/NewUser'
 import PostList from "./components/posts/PostsList";
@@ -32,12 +33,6 @@ class App extends Component {
       localStorage.setItem('devaTwitt.posts', JSON.stringify(posts));
   }
   render() {
-      const Home = () => (
-          <div>
-              <h2>Home</h2>
-          </div>
-      );
-
     return (
       <div className="App">
         <header className="App-header">

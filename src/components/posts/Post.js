@@ -19,7 +19,9 @@ class Post extends React.Component{
                           {parseDate(post.date)}
                       </div>
                   </Panel.Heading>
-                  <Panel.Body>{post.publication}</Panel.Body>
+                  <Panel.Body>
+                      {post.publication}
+                  </Panel.Body>
                   <PostActions post={post} />
               </Panel>
         )}

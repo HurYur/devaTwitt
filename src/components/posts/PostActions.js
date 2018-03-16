@@ -2,7 +2,7 @@ import React from 'react';
 import {Panel, Glyphicon, Image} from 'react-bootstrap';
 
 import TextInput from '../shared/TextInput';
-import {requestPost} from "../../helpers/requstHelper";
+import {postComment, postLike} from "../../helpers/requstHelper";
 import {getCurrentUser} from "../../helpers/storageHelper";
 
 class PostActions extends React.Component{
@@ -16,21 +16,13 @@ class PostActions extends React.Component{
 
         //ignore request if user liked post already
         if(post.likes.indexOf(user.id) < 0){
-            let updatedPost = post.likes.push(user.id);
-            requestPost('devaTwitt.posts.' + post.id, updatedPost);
+            postLike(post.id, user.id);
         }
     }
     sendComment = (newCommentText) => {
-        const {post} = this.props;
-        let user = getCurrentUser();
-
-        let newComment = {
-            text: newCommentText,
-            author: user.id,
-            date: new Date()
-        };
-        let updatedPost = post.comments.push(newComment);
-        requestPost('devaTwitt.posts.' + post.id, updatedPost);
+        if(newCommentText.length > 1){
+            postComment(this.props.post.id, newCommentText);
+        }
     };
     render(){
         let {showComments} = this.state;
