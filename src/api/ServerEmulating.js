@@ -17,7 +17,7 @@ export function requestGet(url, data){
 export function requestPost(url, data){
     if (url.includes('comments')){
         // add new comment
-        let commentedPostId = parseInt(url.match(/\d+/)[0]);
+        let commentedPostId = parseInt(url.match(/\d+/)[0], 10);
         let posts = JSON.parse(localStorage.getItem('devaTwitt.posts'));
         let postPosition = posts.findIndex( post => post.id === commentedPostId);
         posts[postPosition]['comments'].push(data);
@@ -25,7 +25,7 @@ export function requestPost(url, data){
         localStorage.setItem('devaTwitt.posts', JSON.stringify(posts));
     }else if(url.includes('likes')){
         //add like to Post
-        let likedPostId = parseInt(url.match(/\d+/)[0]);
+        let likedPostId = parseInt(url.match(/\d+/)[0], 10);
         let posts = JSON.parse(localStorage.getItem('devaTwitt.posts'));
         let postPosition = posts.findIndex( post => post.id === likedPostId);
         posts[postPosition]['likes'].push(data);
@@ -50,7 +50,7 @@ export function requestPost(url, data){
         localStorage.setItem('devaTwitt.users', JSON.stringify(users));
     }else if(url.includes('follow')){
         // Follow or Unfollow user;
-        let followUserId = parseInt(url.match(/\d+/)[0]);
+        let followUserId = parseInt(url.match(/\d+/)[0], 10);
         let users = JSON.parse(localStorage.getItem('devaTwitt.users'));
         let loggedUserPosition = users.findIndex( user => user.id === data);
         let userFollowers = users[loggedUserPosition]['followers'];
