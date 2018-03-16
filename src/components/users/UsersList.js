@@ -14,7 +14,13 @@ class UsersList extends React.Component {
         this.setState({users: requestGet('devaTwitt.users')});
     }
     render(){
-        let {users, showActive} = this.state;
+        let {showActive} = this.state;
+        let users = [];
+        if(showActive){
+            users = this.state.users.filter((user)=> user.isActive);
+        }else{
+            users = this.state.users;
+        }
 
         return (
             <div>
@@ -24,14 +30,9 @@ class UsersList extends React.Component {
                 </Button>
                 <Row>
                     {
-                        //@todo make refactoring
-                        showActive
-                            ? users.filter((user)=> user.isActive).map((user, i) =>{
-                                return <User key={i} user={user} />
-                            })
-                            : users.map((user, i)=>{
-                                return <User key={i} user={user} />
-                            })
+                        users.map((user, i)=>{
+                            return <User key={i} user={user} />
+                        })
                     }
                 </Row>
             </div>
