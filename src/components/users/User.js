@@ -31,7 +31,7 @@ class User extends React.Component {
                     <Panel.Footer>
                         <div className="follow pointer" onClick={() => this.follow()}>
                             <Glyphicon glyph="bookmark" />
-                            {user.followers.indexOf(loggedUser.id) >= 0 ? "Followed" : "Follow" }
+                            {loggedUser.followers.indexOf(user.id) >= 0 ? "Followed" : "Follow" }
                         </div>
                         <div className="email">
                             <a href={"mailto:" + user.email}>{user.email}</a>

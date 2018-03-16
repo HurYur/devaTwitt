@@ -1,11 +1,11 @@
-import {requestPost} from '../api/ServerEmulating';
+import { requestGet, requestPost } from '../api/ServerEmulating';
 import {getCurrentUser} from "./storageHelper";
 
 let user = getCurrentUser();
 
-export function requestGet(url, handleErrors = true) {
-    return JSON.parse(localStorage.getItem(url));
-}
+// export function requestGet(url, handleErrors = true) {
+//     return JSON.parse(localStorage.getItem(url));
+// }
 export function postLike(postId, userId) {
     requestPost(`devaTwitt/posts.${postId}/likes`, userId);
 }
@@ -47,4 +47,14 @@ export function postUser(user) {
 }
 export function followUser(followUserId) {
     requestPost(`devaTwitt/users/${followUserId}/follow`, user.id);
+}
+
+export function getAllUsres() {
+    return requestGet('devaTwitt/users');
+}
+export function getAllPosts() {
+    return requestGet('devaTwitt/posts');
+}
+export function followedPosts() {
+    return requestGet('posts/followed', user.id);
 }

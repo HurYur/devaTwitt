@@ -19,16 +19,7 @@ class App extends Component {
       this.loadDataToLocalStorage();
   }
   loadDataToLocalStorage(){
-      let user = {
-          id: 0,
-          name: 'testname',
-          email: 'test@gmail.com',
-          isActive: true,
-          photo: "https://robohash.org/0?set=set1&size=50x50",
-          about: 'Tell few words about your self',
-          registeredDate: new Date(),
-      };
-      setCurrentUser(user);
+      setCurrentUser(users[1]);
       localStorage.setItem('devaTwitt.users', JSON.stringify(users));
       localStorage.setItem('devaTwitt.posts', JSON.stringify(posts));
   }

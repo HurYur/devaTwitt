@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Button } from 'react-bootstrap';
 
-import {requestGet} from '../../helpers/requstHelper';
+import {getAllUsres} from '../../helpers/requstHelper';
 import User from './User';
 
 class UsersList extends React.Component {
@@ -10,7 +10,7 @@ class UsersList extends React.Component {
         this.state = {users: [], showActive: false};
     }
     componentDidMount() {
-        this.setState({users: requestGet('devaTwitt.users')});
+        this.setState({users: getAllUsres()});
     }
     render(){
         let {showActive} = this.state;

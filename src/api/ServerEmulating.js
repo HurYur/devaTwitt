@@ -1,3 +1,19 @@
+export function requestGet(url, data){
+    if (url.includes('posts/followed')){
+        // return Followed Posts
+        let posts = JSON.parse(localStorage.getItem('devaTwitt.posts'));
+        let users = JSON.parse(localStorage.getItem('devaTwitt.users'));
+        let userIndex = users.findIndex( user => user.id === data);
+        return posts.filter( post => users[userIndex].followers.indexOf(post.author.id) > -1 );
+
+    }else if(url === 'devaTwitt/posts'){
+        // return all Posts
+        return JSON.parse(localStorage.getItem('devaTwitt.posts'));
+    }else if(url === 'devaTwitt/users'){
+        return JSON.parse(localStorage.getItem('devaTwitt.users'));
+    }
+}
+
 export function requestPost(url, data){
     if (url.includes('comments')){
         // add new comment
@@ -35,17 +51,19 @@ export function requestPost(url, data){
     }else if(url.includes('follow')){
         // Follow or Unfollow user;
         let users = JSON.parse(localStorage.getItem('devaTwitt.users'));
-        let userPosition = users.findIndex( user => user.id == 1);
-        let userFollowers = users[userPosition]['followers'];
-        let isFollowed = userFollowers.findIndex( followerId => followerId === data );
+        let loggedUserPosition = users.findIndex( user => user.id == data);
+        let userFollowers = users[loggedUserPosition]['followers'];
+        let isFollowed = userFollowers.findIndex( followerId => followerId === 3 );
 
         if(isFollowed < 0){
             //follow
-            userFollowers.push(data);
+            userFollowers.push(3);
         }else {
             //unfollow
             userFollowers.splice(isFollowed,1)
         }
+        console.log(users[1].followers);
+        localStorage.setItem('devaTwitt.currentUser', JSON.stringify(users[loggedUserPosition]));
         localStorage.setItem('devaTwitt.users', JSON.stringify(users));
     }
 
