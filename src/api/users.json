@@ -13,8 +13,8 @@
     "id": 2,
     "isActive": false,
     "photo": "https://robohash.org/2?set=set1&size=50x50",
-    "name": "Erma Mcfadden",
-    "email": "ermamcfadden@cormoran.com",
+    "name": "Logged User",
+    "email": "loggeduser@cormoran.com",
     "about": "Sunt culpa sunt elit magna nostrud. In do et ad anim sunt exercitation commodo fugiat veniam dolor deserunt ipsum adipisicing nisi.",
     "followers": [],
     "registered": "2016-12-05T04:21:08 -02:00"
