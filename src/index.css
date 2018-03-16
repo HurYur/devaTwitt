@@ -14,7 +14,7 @@ main{
   color: #5bc0de;
 }
 
-.pointer .glyphicon:hover {
+.pointer:hover .glyphicon{
   color: #31b0d5;
 }
 .new-message-container textarea{

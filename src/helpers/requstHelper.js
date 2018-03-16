@@ -42,7 +42,6 @@ export function postUser(user) {
         about: 'User didn`t tell about himself',
         registred: new Date()
     };
-    console.log('hello');
     requestPost('devaTwitt/users', newUser);
 }
 export function followUser(followUserId) {

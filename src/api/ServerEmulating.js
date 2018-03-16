@@ -36,6 +36,7 @@ export function requestPost(url, data){
         let posts = JSON.parse(localStorage.getItem('devaTwitt.posts'));
         data.id = posts.length + 1;
         data.likes = [];
+        data.comments = [];
         posts.push(data);
 
         localStorage.setItem('devaTwitt.posts', JSON.stringify(posts));
@@ -63,7 +64,6 @@ export function requestPost(url, data){
             //unfollow
             userFollowers.splice(isFollowed,1)
         }
-        console.log(users[1].followers);
         localStorage.setItem('devaTwitt.currentUser', JSON.stringify(users[loggedUserPosition]));
         localStorage.setItem('devaTwitt.users', JSON.stringify(users));
     }

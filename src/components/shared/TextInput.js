@@ -13,6 +13,7 @@ class TextInput extends React.Component{
     };
     sendPost = (message) => {
         this.props.onSend(message);
+        this.setState({newMessageText: ""});
     };
     render(){
         const {newMessageText, messageCharactersLimit} = this.state;

@@ -102,6 +102,11 @@ header .navbar-nav>li>a:hover{
   height: 30px;
 }
 
+.users h2 + .btn {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
