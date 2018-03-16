@@ -22,7 +22,7 @@ class Post extends React.Component{
                   <Panel.Body>
                       {post.publication}
                   </Panel.Body>
-                  <PostActions post={post} />
+                  <PostActions post={post} reloadPost={()=>this.props.reloadPost()} />
               </Panel>
         )}
 }

@@ -17,11 +17,13 @@ class PostActions extends React.Component{
         //ignore request if user liked post already
         if(post.likes.indexOf(user.id) < 0){
             postLike(post.id, user.id);
+            this.props.reloadPost();
         }
     }
     sendComment = (newCommentText) => {
         if(newCommentText.length > 1){
             postComment(this.props.post.id, newCommentText);
+            this.props.reloadPost();
         }
     };
     render(){

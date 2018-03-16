@@ -5,8 +5,6 @@ import { Col, Panel, Image, Glyphicon } from 'react-bootstrap';
 import {getCurrentUser} from "../../helpers/storageHelper";
 import {followUser} from "../../helpers/requstHelper";
 
-
-let loggedUser = getCurrentUser();
 class User extends React.Component {
     constructor(props){
         super(props);
@@ -14,9 +12,12 @@ class User extends React.Component {
     }
     follow(){
         followUser(this.props.user.id);
+        this.props.onFollow();
     }
     render(){
         let {user} = this.props;
+        let loggedUser = getCurrentUser();
+        let isFollowing = loggedUser.followers.indexOf(user.id) >= 0;
 
         return (
             <Col sm={6}>
@@ -29,9 +30,10 @@ class User extends React.Component {
                         {user.about}
                     </Panel.Body>
                     <Panel.Footer>
-                        { user.id  !== loggedUser.id && <div className="follow pointer" onClick={() => this.follow()}>
+                        { user.id  !== loggedUser.id && <div className={isFollowing ? "following " : "follow pointer"}
+                                                             onClick={() => this.follow()}>
                             <Glyphicon glyph="bookmark" />
-                            {loggedUser.followers.indexOf(user.id) >= 0 ? "Followed" : "Follow" }
+                            { isFollowing ? "Followed" : "Follow" }
                         </div>}
                         <div className="email">
                             <a href={"mailto:" + user.email}>{user.email}</a>

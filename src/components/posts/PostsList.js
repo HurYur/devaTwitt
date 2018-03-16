@@ -15,9 +15,13 @@ class PostList extends React.Component{
     }
     sendPost = (newPostText) => {
         postPost(newPostText);
+        this.loadPosts();
+    };
+    loadPosts = () => {
+        this.setState({posts: getAllPosts()});
     };
     componentDidMount() {
-        this.setState({posts: getAllPosts()});
+        this.loadPosts();
     }
     render(){
         return (
@@ -39,7 +43,7 @@ class PostList extends React.Component{
                     {
                         this.state.posts.sort((a,b)=> new Date(b.date) - new Date(a.date)).map((post, i)=>{
                             return (
-                                <Post key={i} post={post} />
+                                <Post key={i} post={post} reloadPost={() => this.loadPosts()} />
                             )
                         })
                     }

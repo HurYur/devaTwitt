@@ -9,8 +9,11 @@ class UsersList extends React.Component {
         super(props);
         this.state = {users: [], showActive: false};
     }
-    componentDidMount() {
+    updateUsers = ()=>{
         this.setState({users: getAllUsres()});
+    };
+    componentDidMount() {
+        this.updateUsers();
     }
     render(){
         let {showActive} = this.state;
@@ -30,7 +33,7 @@ class UsersList extends React.Component {
                 <Row>
                     {
                         users.map((user, i)=>{
-                            return <User key={i} user={user} />
+                            return <User key={i} user={user} onFollow={()=> this.updateUsers()} />
                         })
                     }
                 </Row>
