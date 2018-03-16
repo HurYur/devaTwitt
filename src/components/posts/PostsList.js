@@ -4,6 +4,9 @@ import {Row, Col, Panel, Image} from 'react-bootstrap'
 import Post from './Post';
 import TextInput from '../shared/TextInput'
 import {requestGet, requestPost} from "../../helpers/requstHelper";
+import {getCurrentUser} from "../../helpers/storageHelper";
+
+let currentUser = getCurrentUser();
 
 class PostList extends React.Component{
     constructor(props){
@@ -11,8 +14,12 @@ class PostList extends React.Component{
         this.state = {posts: []};
     }
     sendPost = (newPostText) => {
-        //@todo add Author
         let publication = {
+            author: {
+                id: currentUser.id,
+                name: currentUser.name,
+                photo: currentUser.photo
+            },
             publication: newPostText,
             date: new Date()
         };
@@ -28,7 +35,8 @@ class PostList extends React.Component{
                     <h2>Posts</h2>
                     <Panel className="post">
                         <Panel.Heading>
-                            <Image src="https://robohash.org/CSS.png?set=set1&size=50x50" circle />
+                            <Image src={currentUser.photo} circle />
+                            <span className="author-name">{currentUser.name}</span>
                         </Panel.Heading>
                         <Panel.Body>
                             <TextInput messageCharactersLimit={200}

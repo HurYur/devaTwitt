@@ -19,11 +19,11 @@ class App extends Component {
   }
   loadDataToLocalStorage(){
       let user = {
-          id: 1,
-          name: 'test',
+          id: 0,
+          name: 'testname',
           email: 'test@gmail.com',
           isActive: true,
-          photo: "http://placehold.it/32x32",
+          photo: "https://robohash.org/0?set=set1&size=50x50",
           about: 'Tell few words about your self',
           registeredDate: new Date(),
       };

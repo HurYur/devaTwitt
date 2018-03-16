@@ -1,32 +1,46 @@
 import React from 'react';
 import { Col, Panel, Image, Glyphicon } from 'react-bootstrap';
+import {getCurrentUser} from "../../helpers/storageHelper";
 
+
+let loggedUser = getCurrentUser();
 class User extends React.Component {
     constructor(props){
         super(props);
         this.state = {users: [], showActive: false};
     }
-    follow(user){
-        console.log(user);
+    follow(){
+        const {user} = this.props;
+        // unfollow
+        if (user.followers.indexOf(loggedUser.id) >= 0){
+            user.followers.splice(user.followers.indexOf(loggedUser.id), 1);
+        }
+        //follow
+        else {
+            user.followers.push(loggedUser.id);
+        }
+
     }
     render(){
         let {user} = this.props;
 
         return (
-            <Col sm={4}>
+            <Col sm={6}>
                 <Panel className="user">
                     <Panel.Heading>
-                        <Image src={user.picture} className="user-img" circle />
-                        {user.name.first} {user.name.last}
+                        <Image src={user.photo} className="user-img" circle />
+                        {user.name}
                     </Panel.Heading>
                     <Panel.Body>
-                        {user.email}
                         {user.about}
                     </Panel.Body>
                     <Panel.Footer>
-                        <div className="follow pointer" onClick={() => this.follow(user.name)}>
+                        <div className="follow pointer" onClick={() => this.follow()}>
                             <Glyphicon glyph="bookmark" />
-                            Follow
+                            {user.followers.indexOf(loggedUser.id) >= 0 ? "Followed" : "Follow" }
+                        </div>
+                        <div className="email">
+                            <a href={"mailto:" + user.email}>{user.email}</a>
                         </div>
                         <div className="activity">
                             {user.isActive && <Glyphicon glyph="signal" />}

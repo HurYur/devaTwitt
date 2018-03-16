@@ -1,5 +1,5 @@
 import React from 'react';
-import {Panel} from 'react-bootstrap';
+import {Panel, Image} from 'react-bootstrap';
 
 import PostActions from './PostActions';
 import parseDate from '../../helpers/date';
@@ -11,7 +11,10 @@ class Post extends React.Component{
         return (
               <Panel className="post">
                   <Panel.Heading>
-                      <div>{post.author}</div>
+                      <div className="author">
+                          <Image className="photo" src={post.author.photo} circle />
+                          <span className="name">{post.author.name}</span>
+                      </div>
                       <div className="post-date">
                           {parseDate(post.date)}
                       </div>

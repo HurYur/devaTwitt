@@ -1,5 +1,5 @@
 import React from 'react';
-import {Panel, Glyphicon} from 'react-bootstrap';
+import {Panel, Glyphicon, Image} from 'react-bootstrap';
 
 import TextInput from '../shared/TextInput';
 import {requestPost} from "../../helpers/requstHelper";
@@ -52,7 +52,13 @@ class PostActions extends React.Component{
                                     onSend={(newComment)=> this.sendComment(newComment)}/>
                          <div className="comments-container">
                              {comments.map((comment, i)=>{
-                                 return <div className="comment" key={i}>{comment.author}{comment.text}</div>
+                                 return <div className="comment" key={i}>
+                                     <div className="author">
+                                         <Image src={comment.author.photo} circle />
+                                         <span className="author">{comment.author.name}</span>
+                                     </div>
+                                     <div className="text">{comment.text}</div>
+                                 </div>
                              })}
                          </div>
                      </div>
