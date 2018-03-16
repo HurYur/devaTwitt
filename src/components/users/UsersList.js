@@ -10,7 +10,6 @@ class UsersList extends React.Component {
         this.state = {users: [], showActive: false};
     }
     componentDidMount() {
-        console.log(requestGet('devaTwitt.users'));
         this.setState({users: requestGet('devaTwitt.users')});
     }
     render(){

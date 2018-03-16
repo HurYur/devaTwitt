@@ -1,13 +1,13 @@
 import React from 'react';
 import {Button, Form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
 
-import {requestPut} from '../../helpers/requstHelper';
+import {postUser} from '../../helpers/requstHelper';
 import {validateName, validateEmail, validatePassword} from '../../helpers/validationHelper';
 
 class NewUser extends React.Component{
     constructor(props){
         super(props);
-        this.state = { name: '', email: '', password: '', isValid: false}
+        this.state = { name: '', email: '', password: ''}
     }
     renderFieldGroup = (fieldName, type, label, validation) =>{
         return (
@@ -24,18 +24,17 @@ class NewUser extends React.Component{
     };
     signup = (e) => {
         e.preventDefault();
-        let {name, email, password, isValid } = this.state;
-        //@remove setState
-        this.setState({ isValid: validateName(name) && validateEmail(email) && validatePassword(password) });
-        let data ={
-            name: name,
-            email: email,
-            password: password,
-            regisredDate: new Date()
-        };
-        if (isValid){
-            requestPut('devaTwitt.users', data);
+        let {name, email, password } = this.state;
+
+        if(validateName(name) && validateEmail(email) && validatePassword(password)){
+            let user ={
+                name: name,
+                email: email,
+                password: password
+            };
+            postUser(user);
         }
+
     };
 
     onInputChange(value, field){

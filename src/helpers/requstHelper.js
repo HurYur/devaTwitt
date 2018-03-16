@@ -7,7 +7,7 @@ export function requestGet(url, handleErrors = true) {
     return JSON.parse(localStorage.getItem(url));
 }
 export function postLike(postId, userId) {
-    requestPost(`devaTwitt.posts.${postId}/likes`, userId);
+    requestPost(`devaTwitt/posts.${postId}/likes`, userId);
 }
 export function postComment(postId, newCommentText) {
     let newComment = {
@@ -19,7 +19,7 @@ export function postComment(postId, newCommentText) {
         },
         date: new Date()
     };
-    requestPost(`devaTwitt.posts.${postId}/comments`, newComment);
+    requestPost(`devaTwitt/posts.${postId}/comments`, newComment);
 }
 export function postPost(newPostText) {
     let newPost = {
@@ -31,12 +31,17 @@ export function postPost(newPostText) {
         },
         date: new Date()
     };
-    requestPost('devaTwitt.posts', newPost);
+    requestPost('devaTwitt/posts', newPost);
 }
-
-export function requestPut(url, updateData, handleErrors = true) {
-    let data = JSON.parse(localStorage.getItem(url));
-    data.push(updateData);
-
-    return localStorage.setItem(url, JSON.stringify(data));
+export function postUser(user) {
+    let newUser = {
+        name: user.name,
+        email: user.email,
+        photo: user.photo,
+        password: user.password,
+        about: 'User didn`t tell about himself',
+        registred: new Date()
+    };
+    console.log('hello');
+    requestPost('devaTwitt/users', newUser);
 }
