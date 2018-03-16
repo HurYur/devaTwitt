@@ -17,17 +17,17 @@ export function requestGet(url, data){
 export function requestPost(url, data){
     if (url.includes('comments')){
         // add new comment
-        console.log(url);
+        let commentedPostId = parseInt(url.match(/\d+/)[0]);
         let posts = JSON.parse(localStorage.getItem('devaTwitt.posts'));
-        let postPosition = posts.findIndex( post => post.id == 0);
+        let postPosition = posts.findIndex( post => post.id === commentedPostId);
         posts[postPosition]['comments'].push(data);
 
         localStorage.setItem('devaTwitt.posts', JSON.stringify(posts));
     }else if(url.includes('likes')){
         //add like to Post
-        console.log(url);
+        let likedPostId = parseInt(url.match(/\d+/)[0]);
         let posts = JSON.parse(localStorage.getItem('devaTwitt.posts'));
-        let postPosition = posts.findIndex( post => post.id == 5);
+        let postPosition = posts.findIndex( post => post.id === likedPostId);
         posts[postPosition]['likes'].push(data);
 
         localStorage.setItem('devaTwitt.posts', JSON.stringify(posts));
@@ -50,14 +50,15 @@ export function requestPost(url, data){
         localStorage.setItem('devaTwitt.users', JSON.stringify(users));
     }else if(url.includes('follow')){
         // Follow or Unfollow user;
+        let followUserId = parseInt(url.match(/\d+/)[0]);
         let users = JSON.parse(localStorage.getItem('devaTwitt.users'));
-        let loggedUserPosition = users.findIndex( user => user.id == data);
+        let loggedUserPosition = users.findIndex( user => user.id === data);
         let userFollowers = users[loggedUserPosition]['followers'];
-        let isFollowed = userFollowers.findIndex( followerId => followerId === 3 );
+        let isFollowed = userFollowers.findIndex( followerId => followerId === followUserId );
 
         if(isFollowed < 0){
             //follow
-            userFollowers.push(3);
+            userFollowers.push(followUserId);
         }else {
             //unfollow
             userFollowers.splice(isFollowed,1)
