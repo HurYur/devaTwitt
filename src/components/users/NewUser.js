@@ -33,6 +33,7 @@ class NewUser extends React.Component{
                 password: password
             };
             postUser(user);
+            this.props.history.push("/users");
         }
 
     };
@@ -42,16 +43,16 @@ class NewUser extends React.Component{
     }
     render(){
         const {name, email, password} = this.state;
-        return  (<Row><Col className="user-register-container" sm="6" smOffset={3}><Form horizontal>
-
-            {this.renderFieldGroup("name","text","Name",validateName(name))}
-            {this.renderFieldGroup("email","email","Email",validateEmail(email))}
-            {this.renderFieldGroup("password","password","Password",validatePassword(password))}
-
-            <FormGroup>
-                <Button type="submit"  bsStyle="info" onClick={this.signup}>Sign up</Button>
-            </FormGroup>
-            </Form></Col></Row>
+        return  (<Row><Col className="user-register-container" sm={6} smOffset={3}>
+            <Form horizontal>
+                {this.renderFieldGroup("name","text","Name",validateName(name))}
+                {this.renderFieldGroup("email","email","Email",validateEmail(email))}
+                {this.renderFieldGroup("password","password","Password",validatePassword(password))}
+                <FormGroup>
+                    <Button type="submit"  bsStyle="info" onClick={this.signup}>Sign up</Button>
+                </FormGroup>
+            </Form>
+        </Col></Row>
     )}
 }
 
