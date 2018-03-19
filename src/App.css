@@ -98,9 +98,16 @@ header .navbar-nav>li>a:hover{
 .post .comment{
   margin-bottom: 10px;
 }
+.post .comment .head,
 .post .comment .author{
   display: flex;
   align-items: center;
+}
+.post .comment .head{
+  justify-content: space-between;
+}
+.post .comment .date{
+  font-size: 12px;
 }
 .post .comment .author img{
   width: 30px;

@@ -2,8 +2,9 @@ import React from 'react';
 import {Panel, Glyphicon, Image} from 'react-bootstrap';
 
 import TextInput from '../shared/TextInput';
-import {postComment, postLike} from "../../helpers/requstHelper";
-import {getCurrentUser} from "../../helpers/storageHelper";
+import { postComment, postLike } from '../../helpers/requstHelper';
+import { getCurrentUser } from '../../helpers/storageHelper';
+import parseDate from '../../helpers/date'
 
 class PostActions extends React.Component{
     constructor(props){
@@ -46,11 +47,14 @@ class PostActions extends React.Component{
                                     btnText="Send Comment"
                                     onSend={(newComment)=> this.sendComment(newComment)}/>
                          <div className="comments-container">
-                             {comments.map((comment, i)=>{
+                             {comments.sort((a,b)=> new Date(b.date) - new Date(a.date)).map((comment, i)=>{
                                  return <div className="comment" key={i}>
-                                     <div className="author">
-                                         <Image src={comment.author.photo} circle />
-                                         <span className="author">{comment.author.name}</span>
+                                     <div className="head">
+                                         <div className="author">
+                                             <Image src={comment.author.photo} circle />
+                                             <span className="author">{comment.author.name}</span>
+                                         </div>
+                                         <div className="date">{parseDate(comment.date)}</div>
                                      </div>
                                      <div className="text">{comment.text}</div>
                                  </div>
