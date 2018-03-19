@@ -12,6 +12,9 @@ export default function parseDate(date){
     if( minutes < 10 ){
         minutes = '0' + minutes
     }
+    if( day < 10 ){
+        day = '0' + day
+    }
     if( month < 10 ){
         month = '0' + month
     }
