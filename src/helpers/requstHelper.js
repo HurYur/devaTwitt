@@ -1,33 +1,30 @@
 import { requestGet, requestPost } from '../api/ServerEmulating';
 import {getCurrentUser} from "./storageHelper";
 
-let user = getCurrentUser();
-
-// export function requestGet(url, handleErrors = true) {
-//     return JSON.parse(localStorage.getItem(url));
-// }
 export function postLike(postId, userId) {
     requestPost(`devaTwitt/posts.${postId}/likes`, userId);
 }
 export function postComment(postId, newCommentText) {
+    let loggedUser = getCurrentUser();
     let newComment = {
         text: newCommentText,
         author: {
-            id: user.id,
-            name: user.name,
-            photo: user.photo
+            id: loggedUser.id,
+            name: loggedUser.name,
+            photo: loggedUser.photo
         },
         date: new Date()
     };
     requestPost(`devaTwitt/posts.${postId}/comments`, newComment);
 }
 export function postPost(newPostText) {
+    let loggedUser = getCurrentUser();
     let newPost = {
         publication: newPostText,
         author: {
-            id: user.id,
-            name: user.name,
-            photo: user.photo
+            id: loggedUser.id,
+            name: loggedUser.name,
+            photo: loggedUser.photo
         },
         date: new Date()
     };
@@ -45,7 +42,7 @@ export function postUser(user) {
     requestPost('devaTwitt/users', newUser);
 }
 export function followUser(followUserId) {
-    requestPost(`devaTwitt/users/${followUserId}/follow`, user.id);
+    requestPost(`devaTwitt/users/${followUserId}/follow`, getCurrentUser().id);
 }
 
 export function getAllUsres() {
@@ -55,5 +52,5 @@ export function getAllPosts() {
     return requestGet('devaTwitt/posts');
 }
 export function followedPosts() {
-    return requestGet('posts/followed', user.id);
+    return requestGet('posts/followed', getCurrentUser().id);
 }

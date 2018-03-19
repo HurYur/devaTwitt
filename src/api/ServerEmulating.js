@@ -4,6 +4,7 @@ export function requestGet(url, data){
         let posts = JSON.parse(localStorage.getItem('devaTwitt.posts'));
         let users = JSON.parse(localStorage.getItem('devaTwitt.users'));
         let userIndex = users.findIndex( user => user.id === data);
+
         return posts.filter( post => users[userIndex].followers.indexOf(post.author.id) > -1 );
 
     }else if(url === 'devaTwitt/posts'){
