@@ -21,8 +21,8 @@ class PostActions extends React.Component{
             this.props.reloadPost();
         }
     }
-    sendComment = (newCommentText) => {
-        if(newCommentText.length > 1){
+    sendComment (newCommentText) {
+        if(newCommentText.length){
             postComment(this.props.post.id, newCommentText);
             this.props.reloadPost();
         }

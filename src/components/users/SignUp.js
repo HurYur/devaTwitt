@@ -4,29 +4,31 @@ import {Row, Col, Button, Form, FormGroup, FormControl, ControlLabel} from 'reac
 import {postUser} from '../../helpers/requstHelper';
 import {validateName, validateEmail, validatePassword} from '../../helpers/validationHelper';
 
-class NewUser extends React.Component{
+class SignUp extends React.Component{
     constructor(props){
         super(props);
         this.state = { name: '', email: '', password: ''}
     }
-    renderFieldGroup = (fieldName, type, label, validation) =>{
+    renderFieldGroup = (fieldName, type, label, validationResult) =>{
         return (
             <FormGroup controlId={fieldName}
-                       validationState={validation ? 'success' : 'error'}
+                       validationState={validationResult ? 'error' : 'success'}
         >
             <ControlLabel>{label}</ControlLabel>
             <FormControl type={type}
                          placeholder={label}
                          value={this.state[fieldName]}
                          onChange={(e) => this.onInputChange(e.target.value, fieldName)} />
+            <div className="error">{validationResult}</div>
         </FormGroup>
         )
     };
     signup = (e) => {
         e.preventDefault();
         let {name, email, password } = this.state;
+        let hasError = validateName(name) + validateEmail(email) + validatePassword(password);
 
-        if(validateName(name) && validateEmail(email) && validatePassword(password)){
+        if(!hasError){
             let user ={
                 name: name,
                 email: email,
@@ -56,4 +58,4 @@ class NewUser extends React.Component{
     )}
 }
 
-export default NewUser;
+export default SignUp;

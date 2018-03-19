@@ -114,6 +114,16 @@ header .navbar-nav>li>a:hover{
   height: 30px;
 }
 
+.user-register-container .form-horizontal{
+  text-align: left;
+}
+.user-register-container .form-horizontal .control-label{
+  margin-left: 10px;
+}
+.user-register-container .form-horizontal .error{
+  color: #a94442;
+}
+
 @media screen and (max-width: 767px) {
   .user-register-container .form-group{
     margin-left: 0;

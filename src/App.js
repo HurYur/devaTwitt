@@ -9,7 +9,7 @@ import posts from './api/posts.json';
 
 import Home from './components/Home'
 import UserList from './components/users/UsersList'
-import NewUser from './components/users/NewUser'
+import SignUp from './components/users/SignUp'
 import PostList from "./components/posts/PostsList";
 import {setCurrentUser} from "./helpers/storageHelper";
 
@@ -42,7 +42,7 @@ class App extends Component {
                       <li key={1} ><Link to="/">Home</Link></li>
                       <li key={2} ><Link to="/users">User List</Link></li>
                       <li key={3} ><Link to="/posts">Post List</Link></li>
-                      <li key={4} ><Link to="/new-user">Add user</Link></li>
+                      <li key={4} ><Link to="/sign-up">Sign Up</Link></li>
                   </ul>
               </Navbar.Collapse>
           </Navbar>
@@ -51,7 +51,7 @@ class App extends Component {
             <div className="container">
                 <Route exact path="/" component={Home} />
                 <Route path="/users" component={UserList} />
-                <Route path="/new-user" component={NewUser} />
+                <Route path="/sign-up" component={SignUp} />
                 <Route path="/posts" component={PostList} />
             </div>
         </main>
