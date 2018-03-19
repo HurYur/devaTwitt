@@ -9,8 +9,11 @@ class Home extends React.Component{
         super(props);
         this.state = {posts: []};
     }
-    componentDidMount() {
+    loadPosts = () => {
         this.setState({posts: followedPosts()});
+    };
+    componentDidMount() {
+        this.loadPosts();
     }
     render(){
 
@@ -27,7 +30,7 @@ class Home extends React.Component{
                         {
                             this.state.posts.sort((a,b)=> new Date(b.date) - new Date(a.date)).map((post, i)=>{
                                 return (
-                                    <Post key={i} post={post} />
+                                    <Post key={i} post={post} reloadPost={() => this.loadPosts()} />
                                 )
                             })
                         }
