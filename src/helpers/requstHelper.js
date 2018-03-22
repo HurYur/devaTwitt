@@ -30,15 +30,7 @@ export function postPost(newPostText) {
     };
     requestPost('devaTwitt/posts', newPost);
 }
-export function postUser(user) {
-    let newUser = {
-        name: user.name,
-        email: user.email,
-        photo: user.photo,
-        password: user.password,
-        about: 'User didn`t tell about himself',
-        registred: new Date()
-    };
+export function postUser(newUser) {
     requestPost('devaTwitt/users', newUser);
 }
 export function followUser(followUserId) {

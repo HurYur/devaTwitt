@@ -1,7 +1,9 @@
 import React from 'react';
 import { Row, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-import {getAllUsres} from '../../helpers/requstHelper';
+import { getAllUsres } from '../../helpers/requstHelper';
+import { fetchUsers } from '../../actions/usersActions';
 import User from './User';
 
 class UsersList extends React.Component {
@@ -12,16 +14,17 @@ class UsersList extends React.Component {
     updateUsers = ()=>{
         this.setState({users: getAllUsres()});
     };
-    componentDidMount() {
-        this.updateUsers();
+    componentWillMount() {
+        this.props.fetchUsers();
     }
     render(){
         let {showActive} = this.state;
+
         let users = [];
         if(showActive){
-            users = this.state.users.filter((user)=> user.isActive);
+            users = this.props.users.filter((user)=> user.isActive);
         }else{
-            users = this.state.users;
+            users = this.props.users;
         }
 
         return (
@@ -42,4 +45,8 @@ class UsersList extends React.Component {
     }
 }
 
-export default UsersList;
+function mapStateToProps(state){
+    return {users: state.items.users}
+}
+
+export default connect(mapStateToProps, { fetchUsers })(UsersList);

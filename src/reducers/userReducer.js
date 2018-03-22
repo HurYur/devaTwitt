@@ -13,6 +13,13 @@ export default (state = initialState, action)=>{
                 users: action.users
             }
         }
+        case NEW_USER: {
+            return {
+                ...state,
+                users: action.users,
+                user: action.user
+            }
+        }
         default:
             return state;
     }
