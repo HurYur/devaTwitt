@@ -1,7 +1,9 @@
 import React from 'react';
 import {Row, Col, Button, Form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import {postUser} from '../../helpers/requstHelper';
+import { addNewUser } from '../../actions/usersActions';
 import {validateName, validateEmail, validatePassword} from '../../helpers/validationHelper';
 
 class SignUp extends React.Component{
@@ -34,8 +36,8 @@ class SignUp extends React.Component{
                 email: email,
                 password: password
             };
-            postUser(user);
-            this.props.history.push("/users");
+            this.props.addNewUser(user);
+            this.props.history.push("/login");
         }
 
     };
@@ -58,4 +60,10 @@ class SignUp extends React.Component{
     )}
 }
 
-export default SignUp;
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators({ addNewUser }, dispatch)
+    }
+}
+
+export default connect(mapDispatchToProps, {addNewUser})(SignUp);

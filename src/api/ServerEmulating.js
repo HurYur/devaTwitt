@@ -43,9 +43,11 @@ export function requestPost(url, data){
         localStorage.setItem('devaTwitt.posts', JSON.stringify(posts));
     }else if(url === 'devaTwitt/users'){
         // add new User
+
         let users = JSON.parse(localStorage.getItem('devaTwitt.users'));
         data.id = users.length + 1;
         data.photo = "https://via.placeholder.com/50x50";
+        data.about = 'User didn`t tell about himself';
         data.followers = [];
         users.push(data);
 

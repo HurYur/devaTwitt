@@ -9,14 +9,13 @@ export const fetchUsers = () => dispatch => {
 };
 
 export const addNewUser = (user) => dispatch => {
+
     return dispatch({
         type: NEW_USER,
         user: postUser({
             name: user.name,
             email: user.email,
-            photo: user.photo,
             password: user.password,
-            about: 'User didn`t tell about himself',
             registred: new Date()
         })
     });

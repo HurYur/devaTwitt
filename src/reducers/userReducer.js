@@ -16,7 +16,6 @@ export default (state = initialState, action)=>{
         case NEW_USER: {
             return {
                 ...state,
-                users: action.users,
                 user: action.user
             }
         }
