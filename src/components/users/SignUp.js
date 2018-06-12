@@ -14,15 +14,14 @@ class SignUp extends React.Component{
     renderFieldGroup = (fieldName, type, label, validationResult) =>{
         return (
             <FormGroup controlId={fieldName}
-                       validationState={validationResult ? 'error' : 'success'}
-        >
-            <ControlLabel>{label}</ControlLabel>
-            <FormControl type={type}
-                         placeholder={label}
-                         value={this.state[fieldName]}
-                         onChange={(e) => this.onInputChange(e.target.value, fieldName)} />
-            <div className="error">{validationResult}</div>
-        </FormGroup>
+                       validationState={validationResult ? 'error' : 'success'} >
+                <ControlLabel>{label}</ControlLabel>
+                <FormControl type={type}
+                             placeholder={label}
+                             value={this.state[fieldName]}
+                             onChange={(e) => this.onInputChange(e.target.value, fieldName)} />
+                <div className="error">{validationResult}</div>
+            </FormGroup>
         )
     };
     signup = (e) => {
@@ -39,7 +38,6 @@ class SignUp extends React.Component{
             this.props.addNewUser(user);
             this.props.history.push("/login");
         }
-
     };
 
     onInputChange(value, field){

@@ -13,7 +13,6 @@ export function requestGet(url, data){
         let userIndex = users.findIndex( user => user.id === data);
 
         return posts.filter( post => users[userIndex].followers.indexOf(post.author.id) > -1 );
-
     }else if(url === 'devaTwitt/posts'){
         // return all Posts
         return getParsedData('devaTwitt.posts');
@@ -77,7 +76,4 @@ export function requestPost(url, data){
         setData('devaTwitt.currentUser', users[loggedUserPosition]);
         setData('devaTwitt.users', users);
     }
-
-
-
 }
