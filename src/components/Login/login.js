@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Col, Button, Form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 
-import {validateEmail} from '../../helpers/validationHelper';
+import {validateEmail, validatePassword} from '../../helpers/validationHelper';
 import { getAllUsres } from "../../helpers/requstHelper";
 
 class login extends React.Component{
@@ -30,25 +30,30 @@ class login extends React.Component{
     };
     signin = (e) => {
         e.preventDefault();
-        let {email, name, users: data} = this.state;//users renamed to data
-
+        let {email, password, name, users: data} = this.state;//users renamed to data
+        console.log(data);
         let userData = [];
         data.forEach(function (data) {
             userData.push({
                 email: data.email,
-                name: data.name
+                password: data.password,
+                name: data.name,
+
             });
         });
 
         let match = false;
 
         userData.forEach(function (data) {
-            if (data.email === email && data.name === name) {
+            if (data.email === email && data.name === name && data.password === password) {
                 match = true;
             }
         });
         if(match){
+            alert('Successful');
             this.props.history.push("/users");
+        } else{
+            alert('Try again');
         }
     };
 
@@ -56,15 +61,16 @@ class login extends React.Component{
         this.setState({[field]: value});
     }
     render(){
-
-        const {email} = this.state;
+        const {email, password} = this.state;
         return  (<Row>
                 <Col className="user-register-container" sm={6} smOffset={3}>
+                    <h2>Pls log in!</h2>
                     <Form horizontal>
                         {this.renderFieldGroup("name","text","Name")}
                         {this.renderFieldGroup("email","email","Email",validateEmail(email))}
+                        {this.renderFieldGroup("password","password","Password",validatePassword(password))}
                         <FormGroup>
-                            <Button type="submit"  bsStyle="info" onClick={this.signin}>Sign in</Button>
+                            <Button type="submit"  bsStyle="info" onClick={this.signin}>Login</Button>
                         </FormGroup>
                     </Form>
                 </Col>
