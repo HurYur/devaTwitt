@@ -1,6 +1,8 @@
 import React from 'react';
 import {Row, Col, Button, Form, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { userOnline } from '../../actions/usersActions';
 import {validateEmail, validatePassword} from '../../helpers/validationHelper';
 import { getAllUsres } from "../../helpers/requstHelper";
 
@@ -37,8 +39,7 @@ class login extends React.Component{
             userData.push({
                 email: data.email,
                 password: data.password,
-                name: data.name,
-
+                name: data.name
             });
         });
 
@@ -51,6 +52,11 @@ class login extends React.Component{
         });
         if(match){
             alert('Successful');
+            let user ={
+                email: email,
+                isActive: true
+            };
+            this.props.userOnline(user);
             this.props.history.push("/users");
         } else{
             alert('Try again');
@@ -77,5 +83,9 @@ class login extends React.Component{
             </Row>
         )}
 }
-
-export default login;
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators({ userOnline }, dispatch)
+    }
+}
+export default connect(mapDispatchToProps, {userOnline})(login);

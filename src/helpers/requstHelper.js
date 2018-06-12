@@ -33,7 +33,7 @@ export function postPost(newPostText) {
 export function postUser(newUser) {
     requestPost('devaTwitt/users', newUser);
 }
-export function checkUser(loggedData) {
+export function postUserOnline(loggedData) {
     requestPost('devaTwitt/users', loggedData);
 }
 
