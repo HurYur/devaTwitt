@@ -33,6 +33,10 @@ export function postPost(newPostText) {
 export function postUser(newUser) {
     requestPost('devaTwitt/users', newUser);
 }
+export function postUserOnline(loggedData) {
+    requestPost('devaTwitt/users', loggedData);
+}
+
 export function followUser(followUserId) {
     requestPost(`devaTwitt/users/${followUserId}/follow`, getCurrentUser().id);
 }

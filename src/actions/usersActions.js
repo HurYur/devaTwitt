@@ -20,3 +20,13 @@ export const addNewUser = (user) => dispatch => {
         })
     });
 };
+export const userOnline = (user) => dispatch => {
+
+    return dispatch({
+        type: NEW_USER,
+        user: postUser({
+            email: user.email,
+            isActive: true
+        })
+    });
+};

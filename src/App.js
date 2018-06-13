@@ -11,6 +11,7 @@ import Home from './components/Home'
 import UserList from './components/users/UsersList'
 import SignUp from './components/users/SignUp'
 import PostList from "./components/posts/PostsList";
+import Login from "./components/Login/login"
 import {setCurrentUser} from "./helpers/storageHelper";
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
                       <li key={2} ><Link to="/users">User List</Link></li>
                       <li key={3} ><Link to="/posts">Post List</Link></li>
                       <li key={4} ><Link to="/sign-up">Sign Up</Link></li>
+                      <li key={5} ><Link to="/login">Login</Link></li>
                   </ul>
               </Navbar.Collapse>
           </Navbar>
@@ -53,6 +55,7 @@ class App extends Component {
                 <Route path="/users" component={UserList} />
                 <Route path="/sign-up" component={SignUp} />
                 <Route path="/posts" component={PostList} />
+                <Route path="/login" component={Login} />
             </div>
         </main>
       </div>

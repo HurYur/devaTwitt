@@ -13,7 +13,6 @@ export function requestGet(url, data){
         let userIndex = users.findIndex( user => user.id === data);
 
         return posts.filter( post => users[userIndex].followers.indexOf(post.author.id) > -1 );
-
     }else if(url === 'devaTwitt/posts'){
         // return all Posts
         return getParsedData('devaTwitt.posts');
@@ -53,7 +52,7 @@ export function requestPost(url, data){
 
         let users = getParsedData('devaTwitt.users');
         data.id = users.length + 1;
-        data.photo = "https://via.placeholder.com/50x50";
+        data.photo = "https://robohash.org/" + users.length + 1 + "?set=set1&size=50x50";
         data.about = 'User didn`t tell about himself';
         data.followers = [];
         users.push(data);
@@ -77,7 +76,4 @@ export function requestPost(url, data){
         setData('devaTwitt.currentUser', users[loggedUserPosition]);
         setData('devaTwitt.users', users);
     }
-
-
-
 }
